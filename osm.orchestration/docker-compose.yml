@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+
+  twg:
+    image: andremarcos/osm.selenium
+    container_name: osm.selenium
+    volumes:
+      - /work/workspace/osm.orchestration:/tmp/osm.selenium
+    ports:
+      - "5005:5005"
+    networks:
+      twgNetwork:
+        ipv4_address: 172.19.0.2
+    restart: on-failure
+
+
+networks:
+  twgNetwork:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.19.0.0/16
+      
+          
